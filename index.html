@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Brief — Design Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f0e0c;--paper:#f5f2eb;--accent:#c8472a;--gold:#b8974a;--muted:#7a7670;--border:#d5d0c6;--white:#ffffff}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;min-height:100vh}
+
+/* PROGRESS */
+.progress-bar{position:sticky;top:0;z-index:200;height:3px;background:var(--border)}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .3s ease}
+
+/* HEADER */
+header{background:var(--ink);padding:48px 40px 44px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 18px,rgba(255,255,255,.025) 18px,rgba(255,255,255,.025) 19px)}
+.header-inner{max-width:860px;margin:0 auto;position:relative}
+.studio-tag{font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.studio-tag::before{content:'';width:28px;height:1px;background:var(--gold);display:block}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;line-height:1.1;letter-spacing:-.02em;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--gold)}
+.header-sub{color:rgba(255,255,255,.5);font-size:.9rem;max-width:500px}
+
+/* LAYOUT */
+.wrapper{max-width:860px;margin:0 auto;padding:52px 40px 80px}
+@media(max-width:640px){.wrapper{padding:32px 20px 60px}header{padding:36px 20px}}
+
+/* STATIC SECTION */
+.section{margin-bottom:52px;opacity:0;transform:translateY(18px);animation:fadeUp .5s ease forwards}
+.section:nth-child(1){animation-delay:.05s}.section:nth-child(2){animation-delay:.1s}
+.section:nth-child(3){animation-delay:.15s}.section:nth-child(4){animation-delay:.2s}
+.section:nth-child(5){animation-delay:.25s}.section:nth-child(6){animation-delay:.3s}
+.section:nth-child(7){animation-delay:.35s}.section:nth-child(8){animation-delay:.4s}
+.section:nth-child(9){animation-delay:.45s}.section:nth-child(10){animation-delay:.5s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.section-header{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-num{font-family:'Playfair Display',serif;font-size:.75rem;color:var(--accent);letter-spacing:.1em;min-width:24px}
+.section-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--ink)}
+
+/* DYNAMIC PROJECT SECTION */
+.dyn-section{margin-bottom:20px;border-radius:8px;overflow:hidden;border:1px solid var(--border);animation:fadeUp .3s ease forwards;opacity:0}
+.dyn-header{display:flex;align-items:center;gap:12px;padding:14px 20px;color:#fff;font-size:.82rem;font-weight:500;letter-spacing:.06em}
+.dyn-header .emoji{font-size:1.2rem}
+.dyn-header .tag{margin-left:auto;background:rgba(255,255,255,.2);font-size:.65rem;padding:2px 8px;border-radius:20px;letter-spacing:.1em}
+.dyn-body{padding:24px 20px;background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.dyn-body{grid-template-columns:1fr}}
+.dyn-field{display:flex;flex-direction:column;gap:6px}
+.dyn-field.full{grid-column:1/-1}
+.dyn-label{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.dyn-label .req{color:var(--accent);margin-left:2px}
+
+#dynamic-sections-wrap{margin-bottom:52px}
+.dyn-empty{text-align:center;padding:28px;color:var(--muted);font-size:.85rem;font-style:italic;border:1.5px dashed var(--border);border-radius:8px}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:.71rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+label .req{color:var(--accent);margin-left:2px}
+
+/* INPUTS */
+input[type="text"],input[type="email"],input[type="tel"],input[type="url"],select,textarea{
+background:var(--white);border:1px solid var(--border);border-radius:4px;padding:11px 14px;
+font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:300;color:var(--ink);
+transition:border-color .2s,box-shadow .2s;outline:none;width:100%;appearance:none;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,71,42,.1)}
+input::placeholder,textarea::placeholder{color:#bcb9b2}
+textarea{resize:vertical;min-height:88px}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7670' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+
+/* CHECK GRID */
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.check-item{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--border);border-radius:4px;padding:9px 12px;cursor:pointer;transition:border-color .2s,background .2s;user-select:none}
+.check-item:hover{border-color:var(--accent);background:#fdf9f6}
+.check-item input[type="checkbox"]{display:none}
+.check-item.checked{border-color:var(--accent);background:#fdf2ee}
+.check-box{width:15px;height:15px;border:1.5px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.check-item.checked .check-box{background:var(--accent);border-color:var(--accent)}
+.check-item.checked .check-box::after{content:'';width:4px;height:7px;border:1.5px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px);display:block}
+.check-label{font-size:.82rem;color:var(--ink)}
+
+/* PILLS */
+.pill-row{display:flex;flex-wrap:wrap;gap:7px}
+.pill{padding:6px 14px;border:1.5px solid var(--border);border-radius:100px;font-size:.79rem;cursor:pointer;transition:all .15s;background:var(--white);color:var(--ink);user-select:none}
+.pill:hover{border-color:var(--accent);color:var(--accent)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* SWATCHES */
+.color-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.swatch-btn{width:34px;height:34px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;position:relative}
+.swatch-btn:hover{transform:scale(1.12)}
+.swatch-btn.active{border-color:var(--ink);transform:scale(1.12)}
+.swatch-btn.active::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,.9);font-weight:700}
+
+/* RANGE */
+.range-wrap{display:flex;align-items:center;gap:14px}
+input[type="range"]{flex:1;-webkit-appearance:none;height:3px;background:var(--border);border-radius:2px;outline:none;border:none;box-shadow:none;padding:0}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.range-val{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--accent);min-width:90px;text-align:right}
+
+/* HINT */
+.hint{font-size:.74rem;color:var(--muted);margin-top:3px}
+
+/* SUBMIT */
+.submit-area{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap}
+.submit-note{font-size:.78rem;color:var(--muted);max-width:320px}
+.btn-submit{background:var(--ink);color:#fff;border:none;padding:15px 36px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:background .2s,transform .15s;position:relative;overflow:hidden}
+.btn-submit::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.btn-submit:hover::before{transform:scaleX(1)}
+.btn-submit span{position:relative;z-index:1}
+.btn-submit:active{transform:scale(.98)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed}
+
+/* SUCCESS */
+#success-msg{display:none;background:#f0faf4;border:1px solid #7fc9a0;border-radius:8px;padding:48px 32px;text-align:center}
+#success-msg h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:#2a7a4a;margin-bottom:10px}
+#success-msg p{font-size:.9rem;color:#4a7a5a;margin-top:6px}
+
+/* NOTICE */
+.notice{background:#fffbeb;border:1.5px solid #f59e0b;border-radius:6px;padding:18px 22px;margin-bottom:36px;display:flex;gap:14px;align-items:flex-start}
+.notice-icon{font-size:1.3rem;flex-shrink:0}
+.notice p{font-weight:500;font-size:.88rem;color:#92400e;margin-bottom:6px}
+.notice ol{font-size:.82rem;color:#78350f;line-height:1.8;padding-left:18px}
+.notice a{color:#b45309;font-weight:500}
+.notice code{background:#fef3c7;padding:1px 5px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<header>
+  <div class="header-inner">
+    <div class="studio-tag">Design Brief</div>
+    <h1>Ceritakan<br><em>Visi</em> Anda</h1>
+    <p class="header-sub">Pilih jenis proyek terlebih dahulu — form detail akan muncul otomatis sesuai kebutuhan spesifik setiap layanan.</p>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <div class="notice" id="setup-notice">
+    <span class="notice-icon">⚙️</span>
+    <div>
+      <p>Setup Diperlukan — Aktivasi Pengiriman Email ke erlanggadipta2@gmail.com</p>
+      <ol>
+        <li>Buka <a href="https://web3forms.com" target="_blank">web3forms.com</a> → masukkan email → klik <em>Create Access Key</em></li>
+        <li>Cek inbox Gmail, klik link konfirmasi yang dikirim</li>
+        <li>Copy <strong>Access Key</strong> yang muncul</li>
+        <li>Buka file HTML ini di text editor → cari <code>YOUR_ACCESS_KEY</code> → ganti dengan key kamu → simpan</li>
+      </ol>
+    </div>
+  </div>
+
+  <form id="brief-form" novalidate>
+    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY" id="w3f-key">
+    <input type="hidden" name="from_name" value="Form Brief Design Studio">
+    <input type="hidden" name="botcheck" style="display:none">
+
+    <!-- 01 CLIENT INFO -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Informasi Klien</span>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Nama Lengkap <span class="req">*</span></label><input type="text" name="nama" placeholder="Budi Santoso" required></div>
+        <div class="field"><label>Nama Perusahaan / Brand</label><input type="text" name="perusahaan" placeholder="PT. Kreatif Nusantara"></div>
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" placeholder="budi@email.com" required></div>
+        <div class="field"><label>Nomor WhatsApp</label><input type="tel" name="wa" placeholder="+62 812 3456 7890"></div>
+        <div class="field"><label>Website / Instagram</label><input type="url" name="website" placeholder="https://instagram.com/brand"></div>
+        <div class="field"><label>Industri / Bidang Usaha</label>
+          <select name="industri">
+            <option value="">— Pilih industri —</option>
+            <option>Fashion &amp; Apparel</option><option>Food &amp; Beverage</option>
+            <option>Teknologi &amp; Startup</option><option>Kesehatan &amp; Wellness</option>
+            <option>Pendidikan</option><option>Properti &amp; Konstruksi</option>
+            <option>Kecantikan &amp; Kosmetik</option><option>Retail &amp; E-commerce</option>
+            <option>Jasa &amp; Konsultan</option><option>Hiburan &amp; Kreatif</option>
+            <option>Periklanan &amp; Media</option><option>Lainnya</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 PROJECT TYPE -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Jenis Proyek</span>
+      </div>
+      <p class="hint" style="margin-bottom:14px;">Pilih satu atau lebih — form khusus akan muncul otomatis untuk setiap pilihan</p>
+      <div class="check-grid" id="project-types">
+        <div class="check-item" data-val="brand-identity"><input type="checkbox" name="proyek" value="brand-identity"><div class="check-box"></div><span class="check-label">🎨 Brand Identity</span></div>
+        <div class="check-item" data-val="logo"><input type="checkbox" name="proyek" value="logo"><div class="check-box"></div><span class="check-label">✏️ Logo Design</span></div>
+        <div class="check-item" data-val="social-media"><input type="checkbox" name="proyek" value="social-media"><div class="check-box"></div><span class="check-label">📱 Social Media Kit</span></div>
+        <div class="check-item" data-val="packaging"><input type="checkbox" name="proyek" value="packaging"><div class="check-box"></div><span class="check-label">📦 Packaging Design</span></div>
+        <div class="check-item" data-val="poster-flyer"><input type="checkbox" name="proyek" value="poster-flyer"><div class="check-box"></div><span class="check-label">🗓 Poster / Flyer</span></div>
+        <div class="check-item" data-val="banner"><input type="checkbox" name="proyek" value="banner"><div class="check-box"></div><span class="check-label">🖼 Banner / Spanduk</span></div>
+        <div class="check-item" data-val="presentation"><input type="checkbox" name="proyek" value="presentation"><div class="check-box"></div><span class="check-label">📊 Presentasi / Pitch Deck</span></div>
+        <div class="check-item" data-val="merchandise"><input type="checkbox" name="proyek" value="merchandise"><div class="check-box"></div><span class="check-label">👕 Merchandise</span></div>
+        <div class="check-item" data-val="editorial"><input type="checkbox" name="proyek" value="editorial"><div class="check-box"></div><span class="check-label">📰 Editorial / Buku</span></div>
+        <div class="check-item" data-val="motion"><input type="checkbox" name="proyek" value="motion"><div class="check-box"></div><span class="check-label">🎬 Motion Graphic</span></div>
+        <div class="check-item" data-val="desain-3d"><input type="checkbox" name="proyek" value="desain-3d"><div class="check-box"></div><span class="check-label">🧊 Desain 3D</span></div>
+        <div class="check-item" data-val="web-ui"><input type="checkbox" name="proyek" value="web-ui"><div class="check-box"></div><span class="check-label">🖥 Web UI / Landing Page</span></div>
+        <div class="check-item" data-val="web-development"><input type="checkbox" name="proyek" value="web-development"><div class="check-box"></div><span class="check-label">🔧 Web Development</span></div>
+        <div class="check-item" data-val="advertising"><input type="checkbox" name="proyek" value="advertising"><div class="check-box"></div><span class="check-label">📢 Advertising</span></div>
+        <div class="check-item" data-val="digital-marketing"><input type="checkbox" name="proyek" value="digital-marketing"><div class="check-box"></div><span class="check-label">📈 Digital Marketing Production</span></div>
+        <div class="check-item" data-val="digital-creative-hub"><input type="checkbox" name="proyek" value="digital-creative-hub"><div class="check-box"></div><span class="check-label">🌐 Digital &amp; Creative Hub</span></div>
+        <div class="check-item" data-val="lainnya"><input type="checkbox" name="proyek" value="lainnya"><div class="check-box"></div><span class="check-label">➕ Lainnya</span></div>
+      </div>
+      <div class="field" style="margin-top:14px;"><label>Jika lainnya, sebutkan</label><input type="text" name="proyek_lain" placeholder="Tuliskan kebutuhan spesifik..."></div>
+    </div>
+
+    <!-- DYNAMIC SECTIONS (injected by JS) -->
+    <div id="dynamic-sections-wrap">
+      <div class="dyn-empty" id="dyn-empty">↑ Pilih jenis proyek di atas untuk melihat form detail yang relevan</div>
+      <div id="dynamic-sections"></div>
+    </div>
+
+    <!-- 03 TARGET AUDIENCE -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Target Audiens</span>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Rentang Usia</label>
+          <select name="usia"><option value="">— Pilih —</option>
+            <option>13–17 tahun (Gen Z muda)</option><option>18–24 tahun (Gen Z)</option>
+            <option>25–34 tahun (Millennial)</option><option>35–44 tahun</option>
+            <option>45–60 tahun</option><option>Semua usia</option>
+          </select>
+        </div>
+        <div class="field"><label>Gender Target</label>
+          <select name="gender"><option value="">— Pilih —</option>
+            <option>Pria</option><option>Wanita</option><option>Semua gender</option>
+          </select>
+        </div>
+        <div class="field"><label>Segmen Ekonomi</label>
+          <select name="segmen"><option value="">— Pilih —</option>
+            <option>Budget / Ekonomis</option><option>Menengah</option><option>Premium / Luxury</option>
+          </select>
+        </div>
+        <div class="field"><label>Lokasi Target</label><input type="text" name="lokasi" placeholder="Jakarta, Indonesia, Asia Tenggara"></div>
+        <div class="field full"><label>Deskripsi Persona Konsumen</label><textarea name="persona" placeholder="Contoh: Perempuan 25–35, profesional urban, peduli lingkungan, aktif di Instagram dan TikTok..."></textarea></div>
+      </div>
+    </div>
+
+    <!-- 04 VISUAL STYLE -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">Arah Visual &amp; Brand</span>
+      </div>
+      <div class="field" style="margin-bottom:22px;">
+        <label>Karakter / Nuansa Brand</label>
+        <div class="pill-row" id="nuansa-pills" style="margin-top:10px;">
+          <span class="pill" data-group="nuansa">Modern &amp; Clean</span>
+          <span class="pill" data-group="nuansa">Klasik &amp; Elegan</span>
+          <span class="pill" data-group="nuansa">Playful &amp; Fun</span>
+          <span class="pill" data-group="nuansa">Bold &amp; Edgy</span>
+          <span class="pill" data-group="nuansa">Minimalis</span>
+          <span class="pill" data-group="nuansa">Vintage / Retro</span>
+          <span class="pill" data-group="nuansa">Natural &amp; Organic</span>
+          <span class="pill" data-group="nuansa">Luxury / Premium</span>
+          <span class="pill" data-group="nuansa">Futuristik / Tech</span>
+          <span class="pill" data-group="nuansa">Feminine &amp; Soft</span>
+          <span class="pill" data-group="nuansa">Maskulin &amp; Strong</span>
+          <span class="pill" data-group="nuansa">Sporty &amp; Energik</span>
+        </div>
+        <input type="hidden" name="nuansa" id="nuansa-val">
+      </div>
+      <div class="field" style="margin-bottom:22px;">
+        <label>Preferensi Warna Utama</label>
+        <div class="color-row" id="color-swatches" style="margin-top:10px;">
+          <div class="swatch-btn" data-color="Hitam" style="background:#1a1a1a" title="Hitam"></div>
+          <div class="swatch-btn" data-color="Putih" style="background:#f5f5f5;border:1.5px solid #ddd" title="Putih"></div>
+          <div class="swatch-btn" data-color="Abu-abu" style="background:#6b7280" title="Abu-abu"></div>
+          <div class="swatch-btn" data-color="Merah" style="background:#dc2626" title="Merah"></div>
+          <div class="swatch-btn" data-color="Oranye" style="background:#ea580c" title="Oranye"></div>
+          <div class="swatch-btn" data-color="Kuning" style="background:#d97706" title="Kuning"></div>
+          <div class="swatch-btn" data-color="Hijau" style="background:#16a34a" title="Hijau"></div>
+          <div class="swatch-btn" data-color="Toska" style="background:#0891b2" title="Toska"></div>
+          <div class="swatch-btn" data-color="Biru" style="background:#2563eb" title="Biru"></div>
+          <div class="swatch-btn" data-color="Ungu" style="background:#7c3aed" title="Ungu"></div>
+          <div class="swatch-btn" data-color="Pink" style="background:#db2777" title="Pink"></div>
+          <div class="swatch-btn" data-color="Coklat" style="background:#92400e" title="Coklat"></div>
+          <div class="swatch-btn" data-color="Gold" style="background:#b8974a" title="Gold"></div>
+          <div class="swatch-btn" data-color="Pastel" style="background:linear-gradient(135deg,#f9a8d4,#a5f3fc,#bbf7d0)" title="Pastel"></div>
+        </div>
+        <input type="hidden" name="warna" id="warna-val">
+        <p class="hint">Bisa pilih lebih dari satu</p>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Referensi Brand / Visual yang Disukai</label><input type="text" name="ref_suka" placeholder="Apple, Tokopedia, Uniqlo, dll"></div>
+        <div class="field"><label>Hindari Mirip dengan</label><input type="text" name="ref_tidak" placeholder="Kompetitor atau brand tertentu"></div>
+        <div class="field full"><label>Link Moodboard / Referensi</label><input type="text" name="moodboard" placeholder="Pinterest, Google Drive, Behance — pisahkan dengan koma"><p class="hint">Bisa lebih dari satu link</p></div>
+      </div>
+    </div>
+
+    <!-- 05 ASSETS -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Konten &amp; Aset yang Tersedia</span>
+      </div>
+      <div class="check-grid" id="aset-types">
+        <div class="check-item" data-val="logo-lama"><input type="checkbox" name="aset" value="logo-lama"><div class="check-box"></div><span class="check-label">Logo lama</span></div>
+        <div class="check-item" data-val="foto-produk"><input type="checkbox" name="aset" value="foto-produk"><div class="check-box"></div><span class="check-label">Foto produk</span></div>
+        <div class="check-item" data-val="copywriting"><input type="checkbox" name="aset" value="copywriting"><div class="check-box"></div><span class="check-label">Teks / Copywriting</span></div>
+        <div class="check-item" data-val="brand-guideline"><input type="checkbox" name="aset" value="brand-guideline"><div class="check-box"></div><span class="check-label">Brand guideline</span></div>
+        <div class="check-item" data-val="font-resmi"><input type="checkbox" name="aset" value="font-resmi"><div class="check-box"></div><span class="check-label">Font resmi</span></div>
+        <div class="check-item" data-val="hex-code"><input type="checkbox" name="aset" value="hex-code"><div class="check-box"></div><span class="check-label">Kode warna (HEX)</span></div>
+        <div class="check-item" data-val="domain-hosting"><input type="checkbox" name="aset" value="domain-hosting"><div class="check-box"></div><span class="check-label">Domain &amp; Hosting</span></div>
+        <div class="check-item" data-val="tidak-ada"><input type="checkbox" name="aset" value="tidak-ada"><div class="check-box"></div><span class="check-label">Belum ada aset</span></div>
+      </div>
+      <div class="field" style="margin-top:14px;"><label>Catatan Aset Tambahan</label><textarea name="aset_catatan" placeholder="Contoh: Akan kirim via Google Drive, ada font di Adobe Fonts..."></textarea></div>
+    </div>
+
+    <!-- 06 TIMELINE & BUDGET -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <span class="section-title">Timeline &amp; Anggaran</span>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Deadline yang Diinginkan</label>
+          <select name="deadline"><option value="">— Pilih —</option>
+            <option>ASAP (1–3 hari)</option><option>1 minggu</option><option>2 minggu</option>
+            <option>1 bulan</option><option>Lebih dari 1 bulan</option><option>Fleksibel</option>
+          </select>
+        </div>
+        <div class="field"><label>Tanggal Deadline Spesifik</label><input type="text" name="tgl_deadline" placeholder="Contoh: 15 Agustus 2025"></div>
+        <div class="field full"><label>Anggaran yang Disiapkan (IDR)</label>
+          <div class="range-wrap" style="margin-top:8px;">
+            <input type="range" name="budget_range" id="budget-range" min="0" max="10" step="1" value="3">
+            <span class="range-val" id="budget-label">Rp 1–3 Juta</span>
+          </div>
+          <p class="hint">Geser untuk menyesuaikan rentang anggaran</p>
+        </div>
+        <div class="field full"><label>Negosiasi Anggaran</label>
+          <div class="pill-row" style="margin-top:8px;">
+            <span class="pill" data-group="nego">Ya, sangat fleksibel</span>
+            <span class="pill" data-group="nego">Bisa diskusi</span>
+            <span class="pill" data-group="nego">Anggaran sudah fix</span>
+          </div>
+          <input type="hidden" name="nego" id="nego-val">
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 ADDITIONAL -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">Informasi Tambahan</span>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Format File yang Dibutuhkan</label>
+          <div class="check-grid" style="margin-top:8px;">
+            <div class="check-item" data-val="ai"><input type="checkbox" name="format" value="AI"><div class="check-box"></div><span class="check-label">AI (Illustrator)</span></div>
+            <div class="check-item" data-val="pdf"><input type="checkbox" name="format" value="PDF"><div class="check-box"></div><span class="check-label">PDF</span></div>
+            <div class="check-item" data-val="png"><input type="checkbox" name="format" value="PNG"><div class="check-box"></div><span class="check-label">PNG (transparan)</span></div>
+            <div class="check-item" data-val="jpg"><input type="checkbox" name="format" value="JPG"><div class="check-box"></div><span class="check-label">JPG / JPEG</span></div>
+            <div class="check-item" data-val="svg"><input type="checkbox" name="format" value="SVG"><div class="check-box"></div><span class="check-label">SVG</span></div>
+            <div class="check-item" data-val="psd"><input type="checkbox" name="format" value="PSD"><div class="check-box"></div><span class="check-label">PSD (Photoshop)</span></div>
+            <div class="check-item" data-val="mp4"><input type="checkbox" name="format" value="MP4"><div class="check-box"></div><span class="check-label">MP4 / MOV</span></div>
+            <div class="check-item" data-val="figma"><input type="checkbox" name="format" value="Figma"><div class="check-box"></div><span class="check-label">Figma Source</span></div>
+          </div>
+        </div>
+        <div class="field" style="display:flex;flex-direction:column;gap:14px;">
+          <div><label>Jumlah Revisi</label>
+            <select name="revisi" style="margin-top:6px;"><option value="">— Pilih —</option>
+              <option>1x revisi</option><option>2x revisi</option><option>3x revisi</option>
+              <option>Unlimited</option><option>Sesuai kesepakatan</option>
+            </select>
+          </div>
+          <div><label>Dari mana mengenal kami?</label>
+            <select name="sumber" style="margin-top:6px;"><option value="">— Pilih —</option>
+              <option>Instagram</option><option>LinkedIn</option><option>Rekomendasi teman</option>
+              <option>Google</option><option>TikTok</option><option>Portfolio website</option><option>Lainnya</option>
+            </select>
+          </div>
+        </div>
+        <div class="field full"><label>Pertanyaan atau Catatan Lainnya</label><textarea name="catatan" placeholder="Pertanyaan, instruksi khusus, atau informasi penting lainnya..." style="min-height:100px;"></textarea></div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-area">
+      <p class="submit-note">Semua informasi bersifat rahasia dan hanya digunakan untuk keperluan proyek ini.</p>
+      <button type="submit" class="btn-submit"><span>Kirim Brief →</span></button>
+    </div>
+  </form>
+
+  <div id="success-msg">
+    <h3>Brief Diterima! 🎉</h3>
+    <p>Terima kasih! Brief kamu sudah terkirim ke tim kami.</p>
+    <p>Kami akan menghubungi kamu dalam 1×24 jam untuk mendiskusikan proyek lebih lanjut.</p>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// PROJECT FORM CONFIGS
+// ═══════════════════════════════════════════
+const PROJECTS = {
+  'brand-identity': {
+    emoji: '🎨', title: 'Brand Identity', color: '#7c3aed',
+    fields: [
+      {t:'radio', n:'bi_status', l:'Status Brand', req:true, opts:['Brand Baru','Rebranding dari existing','Refresh / Update Minor']},
+      {t:'text',  n:'bi_nama',   l:'Nama Brand / Produk', req:true, ph:'Contoh: Nusantara Coffee'},
+      {t:'text',  n:'bi_tagline',l:'Tagline / Slogan', ph:'Opsional'},
+      {t:'text',  n:'bi_values', l:'Nilai Utama Brand (3–5 kata kunci)', ph:'Contoh: modern, terpercaya, inovatif'},
+      {t:'text',  n:'bi_kompetitor', l:'Kompetitor yang Perlu Dihindari Kemiripannya', ph:'Brand A, Brand B'},
+      {t:'checks',n:'bi_deliverables', l:'Deliverables yang Dibutuhkan', full:true,
+       opts:['Logo','Color Palette','Typography System','Brand Guidelines','Business Card','Letterhead','Cap / Stempel','Amplop','Social Media Templates','Packaging','Signage / Wayfinding']},
+      {t:'textarea',n:'bi_elemen', l:'Elemen Wajib Ada / Harus Dihindari', full:true, ph:'Contoh: Harus ada unsur batik, hindari warna merah'}
+    ]
+  },
+  'logo': {
+    emoji: '✏️', title: 'Logo Design', color: '#0891b2',
+    fields: [
+      {t:'text',   n:'logo_nama',  l:'Nama Brand / Bisnis', req:true, ph:'Contoh: Kreasi Studio'},
+      {t:'text',   n:'logo_tagline', l:'Tagline / Slogan', ph:'Opsional'},
+      {t:'pills',  n:'logo_gaya',  l:'Gaya Logo', opts:['Wordmark (teks)','Lettermark (inisial)','Pictorial Mark (ikon)','Abstract Mark','Combination Mark','Emblem']},
+      {t:'pills',  n:'logo_konsep',l:'Jumlah Konsep Awal', opts:['1 konsep','2 konsep','3 konsep']},
+      {t:'radio',  n:'logo_scope', l:'Lingkup Proyek', opts:['Logo saja (standalone)','Bagian dari Brand Identity penuh']},
+      {t:'textarea',n:'logo_cerita',l:'Cerita / Filosofi yang Ingin Disampaikan', full:true, ph:'Contoh: Logo mencerminkan kekuatan dan tradisi, terinspirasi simbol keris nusantara...'}
+    ]
+  },
+  'social-media': {
+    emoji: '📱', title: 'Social Media Kit', color: '#db2777',
+    fields: [
+      {t:'checks', n:'sm_platform', l:'Platform Target', req:true, full:true,
+       opts:['Instagram','TikTok','LinkedIn','Twitter / X','Facebook','YouTube','Pinterest','Threads']},
+      {t:'checks', n:'sm_jenis',    l:'Jenis Template yang Dibutuhkan', full:true,
+       opts:['Feed Post','Story / Reels Cover','Highlight Cover','Profile Picture','Banner / Header','Thumbnail YouTube','Carousel','Quote Post']},
+      {t:'pills',  n:'sm_rasio',    l:'Rasio Utama', opts:['Square 1:1','Portrait 4:5','Landscape 16:9','Story 9:16']},
+      {t:'text',   n:'sm_jumlah',   l:'Jumlah Template yang Dibutuhkan', ph:'Contoh: 10 feed + 5 story'},
+      {t:'pills',  n:'sm_tone',     l:'Tone Visual', full:true,
+       opts:['Professional','Casual & Friendly','Bold & Colorful','Monochrome','Minimal & Clean','Aesthetic','Playful / Fun']},
+      {t:'radio',  n:'sm_konten',   l:'Apakah butuh konten rutin juga?', full:true,
+       opts:['Hanya template saja','Ya, butuh konten posting rutin juga']}
+    ]
+  },
+  'packaging': {
+    emoji: '📦', title: 'Packaging Design', color: '#92400e',
+    fields: [
+      {t:'text',   n:'pkg_produk',  l:'Nama Produk', req:true, ph:'Kopi Robusta Premium'},
+      {t:'checks', n:'pkg_jenis',   l:'Jenis Kemasan', req:true,
+       opts:['Box / Karton','Standing Pouch','Sachet','Botol / Jar','Label Tempel','Sleeve','Wrapping Paper','Totebag','Lainnya']},
+      {t:'text',   n:'pkg_ukuran',  l:'Ukuran Kemasan', ph:'Contoh: 10 x 15 x 5 cm'},
+      {t:'pills',  n:'pkg_material',l:'Material', opts:['Karton / Duplex','Kraft / Coklat','Plastik','Kaca','Aluminium Foil','Belum tahu']},
+      {t:'text',   n:'pkg_sku',     l:'Jumlah Varian / SKU', ph:'Contoh: 3 varian rasa'},
+      {t:'pills',  n:'pkg_cetak',   l:'Teknik Cetak', opts:['Offset Printing','Digital Printing','Flexographic','Belum tahu']},
+      {t:'radio',  n:'pkg_mockup',  l:'Butuh 3D Mockup Packaging?', opts:['Ya','Tidak','Opsional']},
+      {t:'radio',  n:'pkg_dieline', l:'Butuh Dieline / Template Vendor?', opts:['Sudah punya dieline','Butuh dibuatkan','Belum tahu']}
+    ]
+  },
+  'poster-flyer': {
+    emoji: '🗓', title: 'Poster / Flyer', color: '#16a34a',
+    fields: [
+      {t:'pills',  n:'pf_tujuan',  l:'Tujuan', req:true, opts:['Event / Acara','Promosi / Sale','Informasi / Edukasi','Undangan','Pengumuman','Recruitment']},
+      {t:'checks', n:'pf_ukuran',  l:'Ukuran', opts:['A3 (297×420mm)','A4 (210×297mm)','A5 (148×210mm)','F4 (215×330mm)','Square (custom)','Custom']},
+      {t:'checks', n:'pf_versi',   l:'Versi yang Dibutuhkan', opts:['Digital (media sosial)','Print / Cetak','Keduanya']},
+      {t:'text',   n:'pf_tanggal', l:'Tanggal Event / Deadline Konten', ph:'20 Agustus 2025'},
+      {t:'text',   n:'pf_jumlah',  l:'Jumlah Variasi Desain', ph:'1 desain utama + 2 variasi warna'},
+      {t:'radio',  n:'pf_teks',    l:'Teks / Konten Sudah Siap?', full:true, opts:['Sudah siap semua','Sebagian sudah','Belum ada — butuh copywriting']}
+    ]
+  },
+  'banner': {
+    emoji: '🖼', title: 'Banner / Spanduk', color: '#d97706',
+    fields: [
+      {t:'checks', n:'bn_jenis',    l:'Jenis Banner', req:true,
+       opts:['Spanduk Outdoor','Banner X-Stand','Roll-up / Pull-up','Backdrop','Baliho / Billboard','Digital Banner (web)','Email Banner','Digital Signage']},
+      {t:'text',   n:'bn_ukuran',   l:'Ukuran', ph:'5 x 1 meter / 60 x 160 cm'},
+      {t:'pills',  n:'bn_material', l:'Material Cetak', opts:['Flexi China','Flexi Korea / Premium','Vinyl','Kain / Blacu','Digital saja (tanpa cetak)']},
+      {t:'text',   n:'bn_lokasi',   l:'Lokasi Pemasangan', ph:'Pintu masuk toko, booth pameran, web'},
+      {t:'text',   n:'bn_jumlah',   l:'Jumlah Desain', ph:'3 desain berbeda'}
+    ]
+  },
+  'presentation': {
+    emoji: '📊', title: 'Presentasi / Pitch Deck', color: '#0891b2',
+    fields: [
+      {t:'pills',  n:'pt_tujuan',  l:'Tujuan', req:true, opts:['Investor Pitch','Client Proposal','Internal / Tim','Event / Seminar','Annual Report','Product Launch']},
+      {t:'text',   n:'pt_slide',   l:'Estimasi Jumlah Slide', ph:'20–30 slide'},
+      {t:'pills',  n:'pt_software',l:'Software', opts:['PowerPoint','Google Slides','Keynote','Canva','Figma / PDF']},
+      {t:'radio',  n:'pt_data',    l:'Ada Data / Chart yang Perlu Divisualisasikan?', opts:['Ya, banyak data','Ada beberapa','Tidak ada']},
+      {t:'radio',  n:'pt_animasi', l:'Butuh Animasi Slide?', opts:['Ya, lengkap','Simple saja','Tidak perlu']},
+      {t:'radio',  n:'pt_template',l:'Ada Template Existing untuk Di-redesign?', opts:['Ada, perlu redesign','Tidak ada — dari nol']},
+      {t:'textarea',n:'pt_outline',l:'Outline / Struktur Presentasi (jika sudah ada)', full:true, ph:'1. Cover, 2. Problem, 3. Solution, 4. Market Size...'}
+    ]
+  },
+  'merchandise': {
+    emoji: '👕', title: 'Merchandise', color: '#16a34a',
+    fields: [
+      {t:'checks', n:'merch_jenis', l:'Jenis Merchandise', req:true,
+       opts:['Kaos / T-Shirt','Hoodie / Sweater','Polo Shirt','Topi','Totebag','Mug / Tumbler','Pin / Badge','Sticker','Lanyard','Notebook','Lainnya']},
+      {t:'checks', n:'merch_teknik',l:'Teknik Produksi', opts:['Sablon','Bordir','DTG (Direct to Garment)','Sublimasi','UV Print','Belum tahu']},
+      {t:'text',   n:'merch_qty',   l:'Estimasi Quantity', ph:'50 pcs kaos, 100 pcs totebag'},
+      {t:'radio',  n:'merch_output',l:'Output yang Dibutuhkan', full:true, opts:['Mockup presentasi saja','File siap produksi (ke vendor)','Keduanya']},
+      {t:'textarea',n:'merch_catatan',l:'Catatan Tambahan', full:true, ph:'Warna kaos putih dan hitam, ada 3 posisi cetak...'}
+    ]
+  },
+  'editorial': {
+    emoji: '📰', title: 'Editorial / Buku', color: '#7c3aed',
+    fields: [
+      {t:'pills',  n:'ed_jenis',   l:'Jenis Publikasi', req:true, opts:['Buku','Majalah','Katalog Produk','Annual Report','Company Profile (cetak)','Brosur','Newsletter']},
+      {t:'text',   n:'ed_halaman', l:'Estimasi Jumlah Halaman', ph:'60 halaman'},
+      {t:'pills',  n:'ed_ukuran',  l:'Ukuran', opts:['A4','A5','B5','A3','Square','Custom']},
+      {t:'radio',  n:'ed_layout',  l:'Ada Layout Existing?', opts:['Dari nol','Ada — perlu di-redesign','Ada template — tinggal isi konten']},
+      {t:'radio',  n:'ed_konten',  l:'Konten / Teks Sudah Siap?', opts:['Semua siap','Sebagian siap','Belum — butuh copywriting']},
+      {t:'radio',  n:'ed_digital', l:'Butuh Versi Digital?', opts:['Print saja','Digital (PDF) saja','Keduanya']}
+    ]
+  },
+  'motion': {
+    emoji: '🎬', title: 'Motion Graphic', color: '#dc2626',
+    fields: [
+      {t:'checks', n:'mg_jenis',    l:'Jenis Motion', req:true, full:true,
+       opts:['Explainer Video','Animasi Logo','Social Media Motion','Infografis Animasi','Intro / Outro','Bumper Ads','Kinetic Typography','Product Demo']},
+      {t:'text',   n:'mg_durasi',   l:'Durasi per Video', ph:'30 detik / 1–2 menit'},
+      {t:'checks', n:'mg_platform', l:'Platform Distribusi',
+       opts:['Instagram Reels / Story','YouTube','TikTok','Facebook','Website','Presentasi','Iklan digital']},
+      {t:'radio',  n:'mg_script',   l:'Ada Script / Storyboard?', opts:['Sudah ada script lengkap','Ada outline kasar','Belum — butuh dibuatkan']},
+      {t:'radio',  n:'mg_vo',       l:'Butuh Voice Over?', opts:['Ya (Bhs. Indonesia)','Ya (Bhs. Inggris)','Tidak perlu']},
+      {t:'checks', n:'mg_format',   l:'Format Output', opts:['MP4 (H.264)','MOV','GIF','WebM']}
+    ]
+  },
+  'desain-3d': {
+    emoji: '🧊', title: 'Desain 3D', color: '#0891b2',
+    fields: [
+      {t:'checks', n:'td_jenis',    l:'Jenis 3D', req:true,
+       opts:['Product Visualization','Arsitektur / Interior','Character / Maskot 3D','3D Motion / Animasi','Infografis 3D','Logo 3D','Environment / Scene']},
+      {t:'pills',  n:'td_software', l:'Software Preferensi', opts:['Blender','Cinema 4D','3ds Max','SketchUp','Maya','Bebas / Rekomendasi']},
+      {t:'pills',  n:'td_output',   l:'Output', opts:['Still Image / Render','Animasi / Video','Keduanya','GIF Animasi']},
+      {t:'text',   n:'td_angle',    l:'Jumlah Angle / View', ph:'3 angle: front, side, perspective'},
+      {t:'pills',  n:'td_level',    l:'Level Detail', opts:['Low-poly / Stylized','Medium Detail','Photorealistic / High-end']},
+      {t:'radio',  n:'td_ref',      l:'Ada Referensi / Gambar Teknis?', opts:['Ada blueprint / gambar teknis','Ada foto referensi','Tidak ada — dari deskripsi']},
+      {t:'textarea',n:'td_desk',    l:'Deskripsi Objek yang Perlu Dibuat', full:true, ph:'Detail objek, material, warna, tekstur, dan nuansa yang diinginkan...'}
+    ]
+  },
+  'web-ui': {
+    emoji: '🖥', title: 'Web UI / Landing Page', color: '#2563eb',
+    fields: [
+      {t:'pills',  n:'wui_jenis',   l:'Jenis', req:true, opts:['Landing Page','Company Profile','Portfolio','Blog / Magazine','E-commerce','Portal / Membership','App Dashboard']},
+      {t:'text',   n:'wui_halaman', l:'Estimasi Jumlah Halaman / Section', ph:'5 halaman / 8 section dalam 1 halaman'},
+      {t:'pills',  n:'wui_platform',l:'Platform / Tools', full:true, opts:['HTML / CSS murni','WordPress','Webflow','Wix','Framer','Figma (desain saja)','Bebas / Rekomendasi']},
+      {t:'checks', n:'wui_fitur',   l:'Fitur Khusus', full:true,
+       opts:['Form Kontak','Gallery / Portfolio','Blog / Artikel','Live Chat','Google Maps','Video Embed','Pop-up / CTA','Multi-bahasa','Animasi Scroll']},
+      {t:'text',   n:'wui_ref',     l:'Referensi Website yang Disukai', ph:'apple.com, tokopedia.com'},
+      {t:'radio',  n:'wui_konten',  l:'Konten / Copy Sudah Disiapkan?', opts:['Sudah siap','Sebagian siap','Butuh copywriting juga']},
+      {t:'radio',  n:'wui_mobile',  l:'Responsif Mobile?', opts:['Wajib responsif','Desktop only','Sesuai rekomendasi']}
+    ]
+  },
+  'web-development': {
+    emoji: '🔧', title: 'Web Development', color: '#1d4ed8',
+    fields: [
+      {t:'pills',  n:'wd_jenis',   l:'Jenis Website', req:true,
+       opts:['Company Profile','Landing Page','E-commerce / Toko Online','Web App / SaaS','Portal / Membership','Blog / CMS','Dashboard / Admin Panel','Marketplace']},
+      {t:'pills',  n:'wd_stack',   l:'Tech Stack / Platform', full:true,
+       opts:['WordPress','Webflow','Laravel + Vue / React','Next.js','Nuxt.js','CodeIgniter','Django / Python','Bebas / Rekomendasi']},
+      {t:'checks', n:'wd_fitur',   l:'Fitur yang Dibutuhkan', full:true,
+       opts:['CMS / Admin Panel','User Login & Register','Payment Gateway','Search & Filter','Newsletter / Email Blast','Multi-bahasa','API Integration','Dashboard Analitik','Live Chat / Chatbot','Push Notification','SEO Optimization','Mobile App (PWA)']},
+      {t:'text',   n:'wd_halaman', l:'Estimasi Jumlah Halaman', ph:'8 halaman utama'},
+      {t:'radio',  n:'wd_desain',  l:'Desain UI Sudah Ada?', opts:['Ada (Figma / XD / lainnya)','Belum — butuh desain juga','Ada referensi style yang ingin diikuti']},
+      {t:'radio',  n:'wd_hosting', l:'Hosting & Domain Sudah Ada?', opts:['Sudah ada keduanya','Sudah ada domain — butuh hosting','Belum ada — butuh dibantu']},
+      {t:'radio',  n:'wd_seo',     l:'Butuh SEO Optimization?', opts:['Ya, on-page SEO lengkap','Basic setup saja','Tidak perlu']},
+      {t:'radio',  n:'wd_maintenance',l:'Butuh Maintenance Setelah Launch?', opts:['Ya — kontrak maintenance','Garansi bug saja','Tidak perlu']},
+      {t:'textarea',n:'wd_custom', l:'Fitur / Alur Kerja Khusus yang Perlu Dijelaskan', full:true,
+       ph:'Integrasi sistem existing, alur custom, kebutuhan teknis spesifik...'}
+    ]
+  },
+  'advertising': {
+    emoji: '📢', title: 'Advertising', color: '#c8472a',
+    fields: [
+      {t:'checks', n:'adv_channel',  l:'Channel Iklan', req:true, full:true,
+       opts:['Google Ads','Meta Ads (FB + IG)','TikTok Ads','YouTube Ads','Twitter / X Ads','LinkedIn Ads','OOH / Billboard','Print Ads (majalah/koran)','TVC / Radio']},
+      {t:'checks', n:'adv_objective',l:'Tujuan Kampanye', req:true,
+       opts:['Brand Awareness','Traffic / Web Visit','Lead Generation','Conversions / Sales','App Install','Retargeting','Video Views','Engagement']},
+      {t:'checks', n:'adv_format',   l:'Format Kreatif', req:true,
+       opts:['Single Image','Carousel','Video Short-form','Video Long-form','Story / Reels Ads','Display Banner','Native Ads','Responsive Ads']},
+      {t:'text',   n:'adv_spec',     l:'Ukuran / Spesifikasi', ph:'1080×1080, 1200×628, 1080×1920, 300×250'},
+      {t:'radio',  n:'adv_copy',     l:'Copywriting Sudah Disiapkan?', opts:['Sudah ada headline & body copy','Butuh dibuatkan','Akan diskusi nanti']},
+      {t:'radio',  n:'adv_mediaplan',l:'Ada Media Plan / Strategi?', opts:['Sudah ada lengkap','Ada outline kasar','Belum — butuh strategi']},
+      {t:'text',   n:'adv_durasi',   l:'Durasi Kampanye', ph:'30 hari / 3 bulan / ongoing'},
+      {t:'textarea',n:'adv_pesan',   l:'Key Message / USP yang Ingin Disampaikan', full:true,
+       ph:'Apa yang ingin dikomunikasikan? Apa keunggulan utama produk/brand kamu?'}
+    ]
+  },
+  'digital-marketing': {
+    emoji: '📈', title: 'Digital Marketing Production', color: '#16a34a',
+    fields: [
+      {t:'checks', n:'dmp_jenis',    l:'Jenis Produksi', req:true, full:true,
+       opts:['Foto Produk','Video Iklan / TVC Digital','Konten Sosmed (gambar)','Konten Sosmed (video)','Email Newsletter','Infografis','Thumbnail Video','E-book / Whitepaper','Podcast Cover']},
+      {t:'pills',  n:'dmp_frekuensi',l:'Frekuensi', req:true, opts:['One-time','Mingguan','Bi-weekly','Bulanan','Retainer (ongoing)']},
+      {t:'text',   n:'dmp_jumlah',   l:'Jumlah Konten yang Dibutuhkan', ph:'20 foto produk + 8 video 30 detik per bulan'},
+      {t:'radio',  n:'dmp_studio',   l:'Ada Studio / Lokasi Syuting?', full:true,
+       opts:['Ya — punya studio sendiri','Tidak — butuh di-arrange','On-location di tempat usaha klien']},
+      {t:'checks', n:'dmp_platform', l:'Platform Distribusi',
+       opts:['Instagram','TikTok','YouTube','Facebook','LinkedIn','Website','Email / WA Blast','Marketplace']},
+      {t:'radio',  n:'dmp_copy',     l:'Butuh Copywriting & Caption?', opts:['Ya — semua copy dibuatkan','Visual saja — copy sudah ada','Sebagian perlu copywriting']},
+      {t:'radio',  n:'dmp_editing',  l:'Butuh Video Editing?', opts:['Ya — full editing','Basic cut saja','Tidak — konten statis']},
+      {t:'checks', n:'dmp_tone',     l:'Tone Konten', full:true,
+       opts:['Edukatif / Informatif','Promosi / Sales','Storytelling','Behind the Scenes','Product Showcase','Testimonial / UGC Style','Entertainment / Humor']}
+    ]
+  },
+  'digital-creative-hub': {
+    emoji: '🌐', title: 'Digital & Creative Hub', color: '#7c3aed',
+    fields: [
+      {t:'checks', n:'dch_layanan',   l:'Lingkup Layanan', req:true, full:true,
+       opts:['Content Strategy','Creative Direction','Brand Campaign','Influencer Brief / Management','Content Production','Copywriting','Photography Art Direction','Community Management','Social Media Management']},
+      {t:'pills',  n:'dch_engagement',l:'Jenis Engagement', req:true, opts:['One-time Project','Retainer Bulanan','Project-based (per campaign)']},
+      {t:'checks', n:'dch_platform',  l:'Platform Fokus',
+       opts:['Instagram','TikTok','LinkedIn','YouTube','Twitter / X','Facebook','Website / Blog']},
+      {t:'radio',  n:'dch_guideline', l:'Sudah Ada Brand Guideline?', opts:['Ada — lengkap','Ada — belum lengkap','Belum ada']},
+      {t:'checks', n:'dch_kpi',       l:'KPI Utama yang Diharapkan',
+       opts:['Engagement Rate','Reach / Impression','Followers Growth','Conversion / Sales','Brand Awareness','Website Traffic']},
+      {t:'text',   n:'dch_volume',    l:'Estimasi Volume Konten per Bulan', ph:'12 feed + 20 story + 4 reels'},
+      {t:'radio',  n:'dch_report',    l:'Butuh Laporan Performa Berkala?', opts:['Ya — monthly report','Ya — weekly report','Tidak perlu']},
+      {t:'textarea',n:'dch_campaign', l:'Deskripsi Campaign / Proyek yang Direncanakan', full:true,
+       ph:'Campaign apa yang ingin dijalankan, tema, atau tujuan besar yang ingin dicapai...'}
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════
+// RENDER ENGINE
+// ═══════════════════════════════════════════
+function mkId(n){ return 'f_' + n.replace(/[^a-z0-9]/gi,'_'); }
+
+function renderField(f){
+  const id = mkId(f.n);
+  const lbl = `<span class="dyn-label">${f.l}${f.req?'<span class="req">*</span>':''}</span>`;
+  const wrap = (inner, full) => `<div class="dyn-field${full||f.full?' full':''}">${lbl}${inner}</div>`;
+
+  if(f.t === 'text'){
+    return wrap(`<input type="text" name="${f.n}" id="${id}" placeholder="${f.ph||''}"${f.req?' required':''}>`);
+  }
+  if(f.t === 'textarea'){
+    return wrap(`<textarea name="${f.n}" id="${id}" placeholder="${f.ph||''}"${f.req?' required':''}></textarea>`, f.full);
+  }
+  if(f.t === 'pills'){
+    const pills = f.opts.map(o=>`<span class="pill" data-group="${f.n}" data-type="multi">${o}</span>`).join('');
+    return wrap(`<div class="pill-row" style="margin-top:6px">${pills}</div><input type="hidden" name="${f.n}" id="${id}">`, f.full);
+  }
+  if(f.t === 'radio'){
+    const pills = f.opts.map(o=>`<span class="pill" data-group="${f.n}" data-type="single">${o}</span>`).join('');
+    return wrap(`<div class="pill-row" style="margin-top:6px">${pills}</div><input type="hidden" name="${f.n}" id="${id}">`, f.full);
+  }
+  if(f.t === 'checks'){
+    const items = f.opts.map(o=>{
+      const v = o.toLowerCase().replace(/[^a-z0-9]/g,'-');
+      return `<div class="check-item dyn-check" data-field="${f.n}"><input type="checkbox" name="${f.n}" value="${o}"><div class="check-box"></div><span class="check-label">${o}</span></div>`;
+    }).join('');
+    return wrap(`<div class="check-grid" style="margin-top:6px">${items}</div>`, f.full||true);
+  }
+  return '';
+}
+
+function renderProjectSection(key, cfg){
+  const fieldsHtml = cfg.fields.map(f => renderField(f)).join('');
+  return `
+    <div class="dyn-section" id="proj-${key}">
+      <div class="dyn-header" style="background:${cfg.color}">
+        <span class="emoji">${cfg.emoji}</span>
+        <strong>Detail: ${cfg.title}</strong>
+        <span class="tag">FORM KHUSUS</span>
+      </div>
+      <div class="dyn-body">${fieldsHtml}</div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════
+// DYNAMIC SECTION MANAGEMENT
+// ═══════════════════════════════════════════
+const rendered = new Set();
+
+function updateDynamicSections(){
+  const selected = [...document.querySelectorAll('#project-types .check-item.checked')]
+    .map(el => el.dataset.val)
+    .filter(k => PROJECTS[k]);
+
+  const container = document.getElementById('dynamic-sections');
+  const empty = document.getElementById('dyn-empty');
+
+  // Render new sections
+  selected.forEach(key => {
+    if(!rendered.has(key)){
+      const div = document.createElement('div');
+      div.innerHTML = renderProjectSection(key, PROJECTS[key]);
+      container.appendChild(div.firstElementChild);
+      rendered.add(key);
+    }
+    const el = document.getElementById('proj-'+key);
+    if(el) el.style.display = 'block';
+  });
+
+  // Hide deselected
+  rendered.forEach(key => {
+    if(!selected.includes(key)){
+      const el = document.getElementById('proj-'+key);
+      if(el) el.style.display = 'none';
+    }
+  });
+
+  empty.style.display = selected.length === 0 ? 'block' : 'none';
+  updateProgress();
+}
+
+// ═══════════════════════════════════════════
+// EVENT DELEGATION — DYNAMIC SECTIONS
+// ═══════════════════════════════════════════
+document.getElementById('dynamic-sections').addEventListener('click', e => {
+  // Checkbox items in dynamic sections
+  const ci = e.target.closest('.dyn-check');
+  if(ci){
+    const cb = ci.querySelector('input[type="checkbox"]');
+    if(cb){
+      cb.checked = !cb.checked;
+      ci.classList.toggle('checked', cb.checked);
+      updateProgress();
+    }
+    return;
+  }
+  // Pills in dynamic sections
+  const pill = e.target.closest('.pill');
+  if(pill && pill.dataset.group){
+    const grp = pill.dataset.group;
+    const type = pill.dataset.type;
+    if(type === 'single'){
+      document.getElementById('dynamic-sections')
+        .querySelectorAll(`.pill[data-group="${grp}"]`)
+        .forEach(p => p.classList.remove('active'));
+    }
+    pill.classList.toggle('active');
+    const active = [...document.getElementById('dynamic-sections')
+      .querySelectorAll(`.pill[data-group="${grp}"].active`)]
+      .map(p => p.textContent).join(', ');
+    const hid = document.getElementById(mkId(grp));
+    if(hid) hid.value = active;
+    updateProgress();
+  }
+});
+
+// ═══════════════════════════════════════════
+// STATIC HANDLERS
+// ═══════════════════════════════════════════
+// Project type checkboxes
+document.querySelectorAll('#project-types .check-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const cb = item.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    item.classList.toggle('checked', cb.checked);
+    updateDynamicSections();
+  });
+});
+
+// Asset checkboxes
+document.querySelectorAll('#aset-types .check-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const cb = item.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    item.classList.toggle('checked', cb.checked);
+    updateProgress();
+  });
+});
+
+// Format checkboxes
+document.querySelectorAll('#brief-form .check-item:not(#project-types .check-item):not(#aset-types .check-item)').forEach(item => {
+  item.addEventListener('click', () => {
+    const cb = item.querySelector('input[type="checkbox"]');
+    if(cb){ cb.checked = !cb.checked; item.classList.toggle('checked', cb.checked); updateProgress(); }
+  });
+});
+
+// Nuansa pills (multi)
+document.querySelectorAll('.pill[data-group="nuansa"]').forEach(p => {
+  p.addEventListener('click', () => {
+    p.classList.toggle('active');
+    document.getElementById('nuansa-val').value =
+      [...document.querySelectorAll('.pill[data-group="nuansa"].active')].map(x=>x.textContent).join(', ');
+    updateProgress();
+  });
+});
+
+// Nego pills (single)
+document.querySelectorAll('.pill[data-group="nego"]').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.pill[data-group="nego"]').forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    document.getElementById('nego-val').value = p.textContent;
+    updateProgress();
+  });
+});
+
+// Color swatches
+document.querySelectorAll('.swatch-btn').forEach(s => {
+  s.addEventListener('click', () => {
+    s.classList.toggle('active');
+    document.getElementById('warna-val').value =
+      [...document.querySelectorAll('.swatch-btn.active')].map(x=>x.dataset.color).join(', ');
+  });
+});
+
+// Budget slider
+const budgetLabels = [
+  'Di bawah Rp 500 Ribu','Rp 500 Ribu – 1 Juta','Rp 1–3 Juta','Rp 3–5 Juta',
+  'Rp 5–10 Juta','Rp 10–20 Juta','Rp 20–50 Juta','Rp 50–100 Juta',
+  'Rp 100–250 Juta','Rp 250–500 Juta','Di atas Rp 500 Juta'
+];
+const bRange = document.getElementById('budget-range');
+const bLabel = document.getElementById('budget-label');
+bRange.addEventListener('input', () => { bLabel.textContent = budgetLabels[bRange.value]; updateProgress(); });
+bLabel.textContent = budgetLabels[bRange.value];
+
+// Input changes
+document.querySelectorAll('input[type="text"],input[type="email"],input[type="tel"],input[type="url"],select,textarea').forEach(el => {
+  el.addEventListener('input', updateProgress);
+  el.addEventListener('change', updateProgress);
+});
+
+// Progress
+function updateProgress(){
+  const all = document.querySelectorAll('#brief-form input[type="text"],#brief-form input[type="email"],#brief-form input[type="tel"],#brief-form select,#brief-form textarea');
+  let filled = 0;
+  all.forEach(f => { if(f.value && f.value.trim()) filled++; });
+  const pct = Math.min(100, Math.round(filled / Math.max(all.length, 1) * 100));
+  document.getElementById('progress').style.width = pct + '%';
+}
+
+// Hide notice if key is set
+(function(){
+  const k = document.getElementById('w3f-key').value;
+  if(k && k !== 'YOUR_ACCESS_KEY') document.getElementById('setup-notice').style.display = 'none';
+})();
+
+// ═══════════════════════════════════════════
+// COLLECT EMAIL BODY
+// ═══════════════════════════════════════════
+function collectSectionData(container){
+  const lines = [];
+  // text / email / tel / url / textarea
+  container.querySelectorAll('input[type="text"],input[type="email"],input[type="tel"],input[type="url"],textarea').forEach(el => {
+    if(el.name && !el.name.startsWith('access') && !el.name.startsWith('botcheck') && !el.name.startsWith('from') && el.value.trim()){
+      lines.push(`• ${el.name}: ${el.value.trim()}`);
+    }
+  });
+  // select
+  container.querySelectorAll('select').forEach(el => {
+    if(el.name && el.value) lines.push(`• ${el.name}: ${el.value}`);
+  });
+  // hidden (pills)
+  container.querySelectorAll('input[type="hidden"]').forEach(el => {
+    if(el.name && !el.name.startsWith('access') && !el.name.startsWith('botcheck') && !el.name.startsWith('from') && el.value.trim()){
+      lines.push(`• ${el.name}: ${el.value}`);
+    }
+  });
+  // checkboxes
+  const cbGroups = {};
+  container.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+    if(!cbGroups[cb.name]) cbGroups[cb.name] = [];
+    cbGroups[cb.name].push(cb.value);
+  });
+  Object.entries(cbGroups).forEach(([k,v]) => lines.push(`• ${k}: ${v.join(', ')}`));
+  return lines;
+}
+
+// ═══════════════════════════════════════════
+// SUBMIT
+// ═══════════════════════════════════════════
+document.getElementById('brief-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+
+  // Validate required
+  const reqs = this.querySelectorAll('[required]');
+  let ok = true;
+  reqs.forEach(f => {
+    if(!f.value.trim()){ f.style.borderColor='#c8472a'; ok=false; }
+    else f.style.borderColor='';
+  });
+  if(!ok){ reqs[0].scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+  const key = document.getElementById('w3f-key').value;
+  if(!key || key === 'YOUR_ACCESS_KEY'){
+    alert('⚠️ Harap isi Access Key Web3Forms.\nLihat petunjuk pada banner di atas form.');
+    return;
+  }
+
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.querySelector('span').textContent = 'Mengirim…';
+
+  // Build email body
+  const selected = [...document.querySelectorAll('#project-types .check-item.checked')]
+    .map(el => el.dataset.val).filter(k => PROJECTS[k]);
+
+  let body = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📋 BRIEF DESAIN BARU\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+  // Static section 01 (client info)
+  body += `👤 INFORMASI KLIEN\n`;
+  document.querySelectorAll('.section:nth-child(2) input, .section:nth-child(2) select').forEach(el => {
+    if(el.name && el.value.trim()) body += `• ${el.name}: ${el.value.trim()}\n`;
+  });
+
+  // Jenis proyek
+  const proyek = [...document.querySelectorAll('#project-types input[type="checkbox"]:checked')].map(c=>c.value).join(', ');
+  const lain = document.querySelector('input[name="proyek_lain"]').value;
+  body += `\n📦 JENIS PROYEK\n• Dipilih: ${proyek || '-'}\n`;
+  if(lain) body += `• Lainnya: ${lain}\n`;
+
+  // Dynamic sections
+  if(selected.length > 0){
+    selected.forEach(key => {
+      const cfg = PROJECTS[key];
+      const el = document.getElementById('proj-'+key);
+      if(!el || el.style.display === 'none') return;
+      body += `\n${'─'.repeat(32)}\n${cfg.emoji} ${cfg.title.toUpperCase()}\n`;
+      collectSectionData(el).forEach(l => body += l + '\n');
+    });
+  }
+
+  // Section 03 audience
+  body += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🎯 TARGET AUDIENS\n`;
+  ['usia','gender','segmen','lokasi','persona'].forEach(n => {
+    const el = document.querySelector(`[name="${n}"]`);
+    if(el && el.value.trim()) body += `• ${n}: ${el.value.trim()}\n`;
+  });
+
+  // Section 04 visual
+  body += `\n🎨 ARAH VISUAL\n`;
+  ['nuansa','warna','ref_suka','ref_tidak','moodboard'].forEach(n => {
+    const el = document.querySelector(`[name="${n}"]`);
+    if(el && el.value.trim()) body += `• ${n}: ${el.value.trim()}\n`;
+  });
+
+  // Section 05 assets
+  const assets = [...document.querySelectorAll('#aset-types input:checked')].map(c=>c.value).join(', ');
+  const asetCat = document.querySelector('[name="aset_catatan"]').value;
+  body += `\n📁 ASET\n• Tersedia: ${assets||'-'}\n`;
+  if(asetCat) body += `• Catatan: ${asetCat}\n`;
+
+  // Section 06 timeline
+  body += `\n⏰ TIMELINE & ANGGARAN\n`;
+  ['deadline','tgl_deadline','nego'].forEach(n => {
+    const el = document.querySelector(`[name="${n}"]`);
+    if(el && el.value.trim()) body += `• ${n}: ${el.value.trim()}\n`;
+  });
+  body += `• anggaran: ${bLabel.textContent}\n`;
+
+  // Section 07 additional
+  body += `\n⚙️ TAMBAHAN\n`;
+  const formats = [...document.querySelectorAll('[name="format"]:checked')].map(c=>c.value).join(', ');
+  if(formats) body += `• format: ${formats}\n`;
+  ['revisi','sumber','catatan'].forEach(n => {
+    const el = document.querySelector(`[name="${n}"]`);
+    if(el && el.value.trim()) body += `• ${n}: ${el.value.trim()}\n`;
+  });
+
+  body += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nDikirim via Form Brief Design Studio`;
+
+  const nama = document.querySelector('[name="nama"]').value;
+  const email = document.querySelector('[name="email"]').value;
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', Accept:'application/json'},
+      body: JSON.stringify({
+        access_key: key,
+        subject: `📋 Brief Desain Baru — ${nama} (${selected.map(k=>PROJECTS[k].title).join(', ')})`,
+        from_name: 'Form Brief Design Studio',
+        email: email,
+        message: body,
+        botcheck: ''
+      })
+    });
+    const json = await res.json();
+    if(json.success){
+      document.getElementById('brief-form').style.display = 'none';
+      document.getElementById('setup-notice').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+      document.getElementById('progress').style.width = '100%';
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else { throw new Error(json.message||'Gagal'); }
+  } catch(err){
+    btn.disabled = false;
+    btn.querySelector('span').textContent = 'Kirim Brief →';
+    alert('❌ Gagal: ' + err.message + '\n\nPastikan Access Key benar dan koneksi internet aktif.');
+  }
+});
+</script>
+</body>
+</html>
